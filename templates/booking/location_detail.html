@@ -1,0 +1,28 @@
+{% extends 'base/_base.html' %}
+
+{% block title %}{{ location.title }}{% endblock title %}
+
+{% block content %}
+    {{ location.title }}
+    {{ location.price }}
+    {{ location.capacity }}
+    {{ location.desctiption }}
+    <br>
+    {% if error %}
+        <div>
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            Дата початку
+            <input type="date" name="start_date">
+        </label>
+        <label>
+            Дата кінця
+            <input type="date" name="end_date">
+        </label>
+        <button type="submit">Забронювати</button>
+    </form>
+{% endblock content %}
