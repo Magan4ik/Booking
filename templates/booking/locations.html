@@ -3,9 +3,18 @@
 {% block title %}Локації{% endblock title %}
 
 {% block content %}
-    <ul>
+
+    <div class="list-group list-group-flush">
     {% for location in locations %}
-        <li><a href="{% url 'main:location_detail' location.pk %}">{{ location.title }}</a></li>
+        <a href="{% url 'main:location_detail' location.pk %}"
+           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                {{ location.title }}
+            </div>
+            <div>
+                {{ location.price }} UAH
+            </div>
+        </a>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock content %}

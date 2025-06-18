@@ -3,26 +3,41 @@
 {% block title %}{{ location.title }}{% endblock title %}
 
 {% block content %}
-    {{ location.title }}
-    {{ location.price }}
-    {{ location.capacity }}
-    {{ location.desctiption }}
-    <br>
-    {% if error %}
-        <div>
-            {{ error }}
+    <div class="card">
+        <div class="card-header">
+            {{ location.title }}
         </div>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label>
-            Дата початку
-            <input type="date" name="start_date">
-        </label>
-        <label>
-            Дата кінця
-            <input type="date" name="end_date">
-        </label>
-        <button type="submit">Забронювати</button>
-    </form>
+        <div class="card-body">
+            <div class="card-text">
+                <p>Опис локації:</p>
+                {{ location.description }}
+                <hr>
+                <p>Ціна - {{ location.price }}</p>
+                <p>Кількість людей - {{ location.capacity }}</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Зробити бронювання
+        </div>
+        <div class="card-body">
+            {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control" id="start_date" name="start_date">
+                  <label for="start_date">Дата початку</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control" id="end_date" name="end_date">
+                  <label for="end_date">Дата кінця</label>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Забронювати</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock content %}
