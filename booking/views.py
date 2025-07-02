@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Location, Booking
-
+from config import settings
 
 # Create your views here.
 def home(request):
@@ -20,6 +21,13 @@ def location_detail(request, location_id):
     error = ''
     if request.method == "POST":
         try:
+            send_mail(
+                subject="Підтвердження бронювання",
+                message="Тестове повідомлення",
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[request.user.email],
+                fail_silently=False
+            )
             booking = Booking.objects.create(
                 user=request.user,
                 location=location,

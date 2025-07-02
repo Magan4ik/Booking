@@ -9,12 +9,18 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'main:locations' %}">Локації</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">...</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">...</a>
-        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Профіль</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:login' %}">Увійти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:register' %}">Зареєструватись</a>
+            </li>
+        {% endif %}
       </ul>
     </div>
   </div>
