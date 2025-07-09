@@ -1,0 +1,30 @@
+{% extends 'base/_base.html' %}
+
+{% block title %}Головна сторінка{% endblock title %}
+
+{% block content %}
+    <ul class="list-group list-group-flush">
+    {% for booking in bookings %}
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div class="row col-6">
+                <div class="col-4">
+                    {{ booking.location.title }}
+                </div>
+                <div class="col">
+                    З: {{ booking.start_date }}
+                </div>
+                <div class="col">
+                    По: {{ booking.end_date }}
+                </div>
+            </div>
+            <div>
+                {% if booking.is_confirmed %}
+                    <span class="badge text-bg-success">Підтверджено</span>
+                {% else %}
+                    <span class="badge text-bg-danger">не підтверджено</span>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

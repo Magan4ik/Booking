@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('location-list/', views.location_list, name='locations'),
     path('location-detail/<int:location_id>', views.location_detail, name='location_detail'),  # 127.0.0.1/location-detail/2
+    path('activation/<int:booking_id>/<str:token>/', views.activation_view, name="activation"),
+    path('profile/', views.profile_view, name="profile"),
 ]
